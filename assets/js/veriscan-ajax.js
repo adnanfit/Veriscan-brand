@@ -130,23 +130,23 @@ jQuery(document).ready(function ($) {
           ? `<img id="prod-img" src="${productImg}" alt="Product Image" class="product-image">`
           : "";
         // For COA Link
-        let coaLink = "";
-
-        let productName = "";
-
-        if (response?.productInfo?.coaLink) {
-          coaLink = `<a href="${response.productInfo.coaLink}" class="view-coa-success" style="color: ${linkColor};">View COA →</a>`;
-        }
-
-        if (response?.productInfo?.productName) {
-          productName = `<h3 class="prod-title" style="text-transform: capitalize;">${response?.productInfo?.productName}</h3>`;
-        }
 
         var productInfoClass = productImg ? "" : "centered-product-info";
         // Determine colors based on response status
         if (response.status === "valid") {
           linkColor = "#079455";
           buttonColor = "#079455";
+          let coaLink = "";
+
+          let productName = "";
+
+          if (response?.productInfo?.coaLink) {
+            coaLink = `<a href="${response.productInfo.coaLink}" class="view-coa  " style="color: ${linkColor};">View COA →</a>`;
+          }
+
+          if (response?.productInfo?.productName) {
+            productName = `<h3 class="prod-title" style="text-transform: capitalize;">${response?.productInfo?.productName}</h3>`;
+          }
           var validationTime = response.validationTime;
           var timeDiffMessage = getTimeDifference(validationTime);
           var dateFormat = formatISODateTime(validationTime);
@@ -187,6 +187,17 @@ jQuery(document).ready(function ($) {
         } else if (response.status === "used") {
           linkColor = "#FF8C39";
           buttonColor = "#FF8C39";
+          let coaLink = "";
+
+          let productName = "";
+
+          if (response?.productInfo?.coaLink) {
+            coaLink = `<a href="${response.productInfo.coaLink}" class="view-coa  " style="color: ${linkColor};">View COA →</a>`;
+          }
+
+          if (response?.productInfo?.productName) {
+            productName = `<h3 class="prod-title" style="text-transform: capitalize;">${response?.productInfo?.productName}</h3>`;
+          }
           var validationTime = response.validationTime;
           var timeDiffMessage = getTimeDifference(validationTime);
           var dateFormat = formatISODateTime(validationTime);
