@@ -2,7 +2,7 @@
 /*
  * Plugin Name:       Veriscan Code Scan
  * Description:       Universal VeriScan: To implement the plugin, use this shortcode: [veriscan_code].
- * Version:           1.3.2
+ * Version:           1.3.5
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            M Adnan Ajmal

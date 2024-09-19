@@ -117,9 +117,10 @@ jQuery(document).ready(function ($) {
         var baseUrl = new URL(apiEndpoint).origin;
         var popupContent = "";
         var linkColor, buttonColor;
+        var productImg = "";
         //Image check from response
-        if (response.productInfo) {
-          var productImg = response.productInfo.productImg
+        if (response?.productInfo) {
+          productImg = response.productInfo.productImg
             ? `${baseUrl}/${response.productInfo.productImg}`
             : "";
         }

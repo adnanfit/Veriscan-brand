@@ -97,6 +97,9 @@
     color: #000;
 }
 .close-button {
+    font-family: "Inter", system-ui;
+    font-weight: 500;
+    font-size: 24px !important;
     background-color: #FF8C39;
     color: white;
     border: none;
@@ -284,7 +287,7 @@
 
     .close-button, .close-button-success {
         padding: 20px 10px;
-        font-size: 14px;
+        font-size: 18px !important;
         border-radius: 0 !important;
     }
 }
