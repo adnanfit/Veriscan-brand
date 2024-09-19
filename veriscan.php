@@ -1,8 +1,15 @@
 <?php
-/**
- * Plugin Name: Veriscan
- * Description: A form-based plugin for code verification with AJAX and template support.
- * Version: 1.0
+/*
+ * Plugin Name:       Veriscan Code Scan
+ * Description:       Universal VeriScan: To implement the plugin, use this shortcode: [veriscan_code].
+ * Version:           1.3.2
+ * Requires at least: 5.2
+ * Requires PHP:      7.2
+ * Author:            M Adnan Ajmal
+ * Author URI:        https://www.linkedin.com/in/adi18f/
+ * License:           GPL v2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       veriscan-code-scan
  */
 
 if (!defined('ABSPATH')) {

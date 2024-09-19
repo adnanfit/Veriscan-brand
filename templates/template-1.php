@@ -9,7 +9,7 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 9998;
+    z-index: 998;
 }
 
 #veriscan-code {
@@ -136,7 +136,7 @@
     background-color: white;
     border-radius: 30px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 9999;
+    z-index: 999;
 }
 
 #veriscan-popup .close-btn {
@@ -145,6 +145,59 @@
     font-size: 16px;
     cursor: pointer;
     float: right;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        width: 100%;
+    }
+
+    #veriscan-popup {
+        top: auto;
+        left: 0;
+        bottom: 0;
+        transform: none;
+        margin: 0;
+        width: 100%;
+        max-width: none;
+        border-radius: 15px;
+
+    }
+
+    #veriscan-loader {
+        width: 80%;
+        max-width: 300px;
+    }
+
+    .input-with-button input {
+        padding: 10px 50px 10px 15px;
+    }
+
+    .input-with-button button {
+        right: 15px;
+        width: 12%;
+    }
+
+    #veriscan-popup .close-btn {
+        font-size: 20px;
+    }
+
+    #lightbox {
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    #lightbox img {
+        max-width: 100%;
+        max-height: 80%;
+    }
+
+    #lightbox .close {
+        font-size: 30px;
+    }
+
 }
     </style>
     <div id="veriscan-overlay"></div>
@@ -163,4 +216,10 @@
     </div>
     <div id="veriscan-popup" style="display:none;">
         <div id="veriscan-popup-content"></div>
+    </div>
+
+    <!-- Lightbox structure -->
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img id="lightbox-image" src="" alt="Full-size Image">
     </div>

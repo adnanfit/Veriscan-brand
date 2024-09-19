@@ -64,17 +64,17 @@ function veriscan_settings_page() {
             <a class="nav-link active" id="api-tab" data-toggle="tab" href="#api" role="tab" aria-controls="api"
                 aria-selected="true">API Endpoint</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link" id="template-tab" data-toggle="tab" href="#template" role="tab" aria-controls="template"
                 aria-selected="false">Template Selection</a>
-        </li>
+        </li> -->
     </ul>
 
     <!-- Tab panes -->
     <div class="tab-content" id="veriscanTabContent">
         <!-- API Endpoint Settings (Tab 1) -->
         <div class="tab-pane fade show active" id="api" role="tabpanel" aria-labelledby="api-tab">
-            <form method="post" action="" class="mt-4">
+            <form method="post" action="" class="mt-4 w-50 p-3">
                 <div class="form-group">
                     <label for="veriscan_api_endpoint">API Endpoint URL</label>
                     <input type="text" name="veriscan_api_endpoint" id="veriscan_api_endpoint" class="form-control"
@@ -82,62 +82,15 @@ function veriscan_settings_page() {
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
-        </div>
 
-        <!-- Template Selection (Tab 2) -->
-        <div class="tab-pane fade" id="template" role="tabpanel" aria-labelledby="template-tab">
-            <form method="post" action="" class="mt-4">
-                <h4>Select a Template</h4>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card text-center shadow-sm">
-                            <!-- Correct image path -->
-                            <img src="<?php echo plugin_dir_url(__FILE__) . '../assets/images/template-1.png'; ?>"
-                                class="card-img-top" alt="Template 1">
-                            <div class="card-body">
-                                <div class="form-check mt-3">
-                                    <input class="form-check-input" type="radio" name="veriscan_selected_template"
-                                        id="template-1" value="template-1"
-                                        <?php checked($selected_template, 'template-1'); ?>>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card text-center shadow-sm">
-                            <img src="<?php echo plugin_dir_url(__FILE__) . '../assets/images/template-2.png'; ?>"
-                                class="card-img-top" alt="Template 2">
-                            <div class="card-body">
-                                <div class="form-check mt-3">
-                                    <input class="form-check-input" type="radio" name="veriscan_selected_template"
-                                        id="template-2" value="template-2"
-                                        <?php checked($selected_template, 'template-2'); ?>>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card text-center shadow-sm">
-                            <img src="<?php echo plugin_dir_url(__FILE__) . 'assets/images/template-3.png'; ?>"
-                                class="card-img-top" alt="Template 3">
-                            <div class="card-body">
-                                <div class="form-check mt-3">
-                                    <input class="form-check-input" type="radio" name="veriscan_selected_template"
-                                        id="template-3" value="template-3"
-                                        <?php checked($selected_template, 'template-3'); ?>>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="submit-btn">
-                    <!-- Save button -->
-                    <button type="submit" class="btn btn-primary ">Save Template</button>
-                </div>
-            </form>
-
+            <!-- Code line bar for the veriscan_code shortcode -->
+            <div class="mt-4">
+                <label for="veriscan_code">Veriscan Code Shortcode</label>
+                <p>Use this shortcode to implement the code line bar:</p>
+                <p>If you're unsure how to implement it, you can watch the demo <a
+                        href="https://www.youtube.com/watch?v=iS1FFahiAbk" target="_blank">here</a>.</p>
+                <pre><code id="veriscan_code">[veriscan_code]</code></pre>
+            </div>
         </div>
     </div>
 </div>
