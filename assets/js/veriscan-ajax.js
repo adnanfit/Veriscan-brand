@@ -142,7 +142,7 @@ jQuery(document).ready(function ($) {
 
           if (response?.productInfo?.coaLink) {
             coaLink = `<a href="${response.productInfo.coaLink}" class="view-coa d-green" style="color: ${linkColor};">
-    View COA <img class="pad-img"  src="${veriscan_ajax_object.pluginUrl}assets/images/gicon.png" alt="Arrow" style="vertical-align: middle;" />
+    View COA <img class="pad-img"  src="${veriscan_ajax_object.pluginUrl}assets/images/gIcon.svg" alt="Arrow" style="vertical-align: middle;" />
 </a>
 `;
           }
@@ -199,7 +199,7 @@ jQuery(document).ready(function ($) {
 
           if (response?.productInfo?.coaLink) {
             coaLink = `<a href="${response.productInfo.coaLink}" class="view-coa o-green" style="color: ${linkColor};">
-    View COA <img  class="pad-img" src="${veriscan_ajax_object.pluginUrl}assets/images/oicon.png" alt="Arrow" style="vertical-align: middle;" />
+    View COA <img  class="pad-img" src="${veriscan_ajax_object.pluginUrl}assets/images/oIcon.svg" alt="Arrow" style="vertical-align: middle;" />
 </a>
 `;
           }
