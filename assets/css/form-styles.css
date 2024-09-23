@@ -5,6 +5,27 @@
     font-weight: normal;
     font-style: normal;
   }
+  .pad-img{
+
+    padding-left: 9px;
+  }
+  .product-code-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.36px; /* Alternatively, use line-height: 1.21; */
+    text-align: left;
+    color:  rgba(71, 84, 103, 0.56);
+
+  }
+  .display-code {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.36px; /* Alternatively, you can use line-height: 1.21; */
+    text-align: left;
+    color: rgba(34, 34, 34, 1);
+  }
   
   
 #veriscan-popup {
@@ -23,7 +44,8 @@
 .popup {
     background-color: white;
     border-radius: 30px;
-    width: 450px;
+    width: 500px;
+   
     overflow: hidden;
 }
 .popup-content {
@@ -33,38 +55,52 @@
 }
 .popup-header {
     text-align: center;
-    margin-top: -20%;
+    margin-top: -19%;
     margin-bottom: 25px;
 }
 .popup-header h2 {
-    font-family: 'SF Pro Display', sans-serif;
-    font-weight: 600;
-    margin: 0;
+    font-family: 'SF Pro', sans-serif;
     font-size: 28px;
+    font-weight: 400;
+    line-height: 1.19; /* 33.41px / 28px = 1.19 */
+   
+    text-align: center;
+    color: #222222;
+    
 }
 .header-p {
-    margin: 5px 0 0;
-    font-size: 14px;
-    font-weight:300;
-    color: #666;
+    margin: 10px 0 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.36px;
+    text-align: center;
+    color: #475467;
+    
 }
 .header-date{
     margin: 5px 0 0;
-    font-size: 14px;
+   
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.36px; /* Alternatively, you can use line-height: 1.21; */
+    text-align: center;
     color: #FF8C39;
 }
 .popup-body {
     width: 90%;
     margin: auto;
+    padding: 10px 0px 0 0px;
     background-color: #f8f9fa;
-    border-radius: 5px;
-    padding: 15px 0px 0 0px;
-    border: 1.2px solid #00000014;
+    border-radius: 8px ;
+     border: 1.5px solid rgba(0, 0, 0, 0.08); /* Top, right, and left border */  
+ 
 }
 .product-info {
     display: flex;
     align-items: center;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 .product-image {
     width: 95px !important;
@@ -74,14 +110,25 @@
 }
 .product-details h3 {
     font-family: 'SF Pro Display', sans-serif;
-    font-weight: 400;
-    margin: 0;
     font-size: 20px;
+    font-weight: 600;
+    line-height: 23.87px;
+  
+    text-align: left;
+    color: rgba(34, 34, 34, 1);
+    ;
 }
 .product-details p {
     margin: 5px 0 0;
     font-size: 12px;
-    color: #666;
+    color: rgba(71, 84, 103, 1);
+    font-family: Inter;
+font-size: 16px;
+font-weight: 500;
+line-height: 19.36px;
+text-align: left;
+
+
 }
 .product-code {
     font-size: 14px;
@@ -89,17 +136,23 @@
     margin-top: 10px;
     background-color: #EAECF0;
     text-align: center;
-    border-radius: 0px 0px 5px 5px;
+    border-radius: 0px 0px 10px 10px;
     border-top: 1.2px solid #00000014;
     padding: 3px;
+    height: 42px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 .product-code{
     color: #000;
 }
 .close-button {
-    font-family: "Inter", system-ui;
+    font-family: 'Inter', sans-serif;
     font-weight: 500;
     font-size: 24px !important;
+    letter-spacing: 0.02em;
     background-color: #FF8C39;
     color: white;
     border: none;
@@ -134,9 +187,13 @@
     justify-content: center;
 }
 .COA-btn a{
+    font-family: 'Inter', sans-serif;  /* Ensure 'Inter' is loaded or use a fallback */
     font-size: 16px;
-    font-weight: 600;
-    text-decoration: underline !important;
+    font-weight: 600;  /* Semi-bold */
+    line-height: 19.36px;
+    text-align: left;
+    text-underline-offset: 3px;
+
 }
 .view-coa-success a{
     font-size: 16px;
@@ -154,7 +211,14 @@
     display: flex;
     text-align: center;
     width: 70%;
-    margin: auto;
+    margin: auto;   font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    color: rgba(71, 84, 103, 1);
+    margin-bottom: 13px;
+ 
 }
 .error-code{
     width: 90%;
@@ -166,7 +230,7 @@
     text-align: center;
     overflow: hidden;
     white-space: wrap;
-    margin-bottom: 20px;
+    margin-bottom: 28px;
 }
 .centered-product-info {
     display: flex;
@@ -211,7 +275,17 @@
     .form-container {
         width: 100%;
     }
+    .header-p {
+        /* margin: 10px 0 20px; */
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 8.36px;
+        text-align: center;
+        color: #475467;
+    }
 
+    
     #veriscan-popup {
         top: auto;
         bottom: 0;
@@ -230,8 +304,25 @@
         border-top-right-radius: 30px !important;
         border-bottom-left-radius: 0 !important;
         border-bottom-right-radius: 0 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
     }
+  
+        .target-class::before {
+            content: '';
+            width: 48px;
+            height: 5px;
+            top: 8px;
+            left: 171px;
+            gap: 0px;
+            border-radius: 10px 0px 0px 0px;
+            opacity: 0;
+            position: absolute; /* Ensure the position is set to apply top/left */
+        }
+  
+    
     .popup-content{
         display: flex;
         flex-direction: column;
@@ -248,7 +339,7 @@
     .popup-error-body{
         width: 75%;
         margin-bottom: 15px;
-        margin-top: -5px;
+        margin-top: -30px;
 
     }
     .error-code{
@@ -257,9 +348,10 @@
     }
     .error-code span{
     font-family: "Inter";
-    font-size: 16px;
-    font-family: 500;
-    color: #4754678F;
+    font-weight: 500;
+  
+    text-align: left;
+  
     } 
     .product-details h3 {
         font-size: 18px; 
@@ -288,4 +380,35 @@
         font-size: 18px !important;
         border-radius: 0 !important;
     }
+}
+@media (max-width: 768px) {
+
+    .popup-header {
+        text-align: center;
+        margin-top: -19%;
+        margin-bottom: 28px !important;
+    }
+    .popup::before {
+        content: '';
+        width: 48px;
+        height: 5px;
+        border-radius: 10px;
+
+        top: 8px;
+      
+ 
+        border-radius: 10px ;
+        opacity: 1; /* Ensure opacity is set to visible */
+        position: absolute;
+        background-color: rgba(71, 84, 103, 0.24);
+        z-index: 9999; /* Ensure this value is high enough to be on top */
+    }
+}
+@media (min-width: 300px) and (max-width: 380px) {
+
+    #veriscan-code {
+        padding: 15px 14px !important;
+    }
+
+
 }

@@ -141,7 +141,10 @@ jQuery(document).ready(function ($) {
           let productName = "";
 
           if (response?.productInfo?.coaLink) {
-            coaLink = `<a href="${response.productInfo.coaLink}" class="view-coa  " style="color: ${linkColor};">View COA →</a>`;
+            coaLink = `<a href="${response.productInfo.coaLink}" class="view-coa d-green" style="color: ${linkColor};">
+    View COA <img class="pad-img"  src="${veriscan_ajax_object.pluginUrl}assets/images/gicon.png" alt="Arrow" style="vertical-align: middle;" />
+</a>
+`;
           }
 
           if (response?.productInfo?.productName) {
@@ -155,9 +158,8 @@ jQuery(document).ready(function ($) {
                     <div class="popup">
                         <div class="popup-content">
                             <div class="img-container" style="margin-top:-22%">
-                                <img src="${
-                                  veriscan_ajax_object.pluginUrl
-                                }assets/images/success.png" alt="Success" />
+                                <img src="${veriscan_ajax_object.pluginUrl
+            }assets/images/success.png" alt="Success" />
                             </div>
                             <div class="popup-header">
                                <h2> <strong>Product Valid</strong></h2>
@@ -168,14 +170,16 @@ jQuery(document).ready(function ($) {
                                     ${productImgElement}
                                     <div class="product-details">
                                     ${productName}
-                                        <p>${
-                                          response.productInfo.description
-                                            ? response.productInfo.description
-                                            : ""
-                                        }</p>
+                                        <p>${response.productInfo.description
+              ? response.productInfo.description
+              : ""
+            }</p>
                                     </div>
                                 </div>
-                                <div class="product-code"> <span>Code:</span> <strong>${displayCode}</strong></div>
+                               <div class="product-code"> 
+  <span class="product-code-label">Code:  &nbsp;<span class="display-code">${displayCode}</span></span>
+</div>
+
                             </div>
                             <div class="COA-btn">
                                 ${coaLink}
@@ -192,7 +196,10 @@ jQuery(document).ready(function ($) {
           let productName = "";
 
           if (response?.productInfo?.coaLink) {
-            coaLink = `<a href="${response.productInfo.coaLink}" class="view-coa  " style="color: ${linkColor};">View COA →</a>`;
+            coaLink = `<a href="${response.productInfo.coaLink}" class="view-coa o-green" style="color: ${linkColor};">
+    View COA <img  class="pad-img" src="${veriscan_ajax_object.pluginUrl}assets/images/oicon.png" alt="Arrow" style="vertical-align: middle;" />
+</a>
+`;
           }
 
           if (response?.productInfo?.productName) {
@@ -206,28 +213,32 @@ jQuery(document).ready(function ($) {
                     <div class="popup">
                         <div class="popup-content">
                             <div class="img-container">
-                                <img src="${
-                                  veriscan_ajax_object.pluginUrl
-                                }assets/images/warn.png" alt="Warning" />
+                                <img src="${veriscan_ajax_object.pluginUrl
+            }assets/images/warn.png" alt="Warning" />
                             </div>
                             <div class="popup-header">
                                 <h2> <strong>Code Already Scanned</strong></h2>
                                 <p class="header-p">Code was scanned ${timeDiffMessage} on</p>
                                 <p class="header-date"><strong>${dateFormat}</strong></p>
+
+
+                                
                             </div>
                             <div class="popup-body">
                                 <div class="product-info ${productInfoClass}">
                                    ${productImgElement}
                                     <div class="product-details">
                                     ${productName}
-                                        <p class="product-dis">${
-                                          response.productInfo.description
-                                            ? response.productInfo.description
-                                            : ""
-                                        }</p>
+                                        <p class="product-dis">${response.productInfo.description
+              ? response.productInfo.description
+              : ""
+            }</p>
                                     </div>
                                 </div>
-                                <div class="product-code">Code: <strong>${displayCode}</strong></div>
+                              <div class="product-code"> 
+  <span class="product-code-label">Code: <span class="display-code">${displayCode}</span></span>
+</div>
+
                             </div>
                             <div class="COA-btn">
                                 ${coaLink}
@@ -252,7 +263,11 @@ jQuery(document).ready(function ($) {
                             <div class="popup-error-body">
                                 <p>This product is not listed in our database. Please contact the vendor or check that the code below is correct.</p>
                             </div>
-                            <div class="error-code">Code: <strong>${codeId}</strong></div>
+                            <div class="error-code"> <span class="product-code-label">Code: <span class="display-code">${codeId}</span></span>  </div>
+                            
+
+
+
                             <button class="close-button" style="background-color: ${buttonColor};">Close</button>
                         </div>
                     </div>
