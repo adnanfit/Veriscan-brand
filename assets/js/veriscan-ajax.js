@@ -155,11 +155,12 @@ jQuery(document).ready(function ($) {
           var dateFormat = formatISODateTime(validationTime);
           var displayCode = isFromUrl ? response.serialNumber : response.code;
           popupContent = `
-                    <div class="popup">
+                    <div class="popup popup.swipe-up">
                         <div class="popup-content">
                             <div class="img-container" style="margin-top:-22%">
-                                <img src="${veriscan_ajax_object.pluginUrl
-            }assets/images/success.png" alt="Success" />
+                                <img src="${
+                                  veriscan_ajax_object.pluginUrl
+                                }assets/images/success.png" alt="Success" />
                             </div>
                             <div class="popup-header">
                                <h2> <strong>Product Valid</strong></h2>
@@ -170,10 +171,11 @@ jQuery(document).ready(function ($) {
                                     ${productImgElement}
                                     <div class="product-details">
                                     ${productName}
-                                        <p>${response.productInfo.description
-              ? response.productInfo.description
-              : ""
-            }</p>
+                                        <p>${
+                                          response.productInfo.description
+                                            ? response.productInfo.description
+                                            : ""
+                                        }</p>
                                     </div>
                                 </div>
                                <div class="product-code"> 
@@ -213,8 +215,9 @@ jQuery(document).ready(function ($) {
                     <div class="popup">
                         <div class="popup-content">
                             <div class="img-container">
-                                <img src="${veriscan_ajax_object.pluginUrl
-            }assets/images/warn.png" alt="Warning" />
+                                <img src="${
+                                  veriscan_ajax_object.pluginUrl
+                                }assets/images/warn.png" alt="Warning" />
                             </div>
                             <div class="popup-header">
                                 <h2> <strong>Code Already Scanned</strong></h2>
@@ -229,10 +232,11 @@ jQuery(document).ready(function ($) {
                                    ${productImgElement}
                                     <div class="product-details">
                                     ${productName}
-                                        <p class="product-dis">${response.productInfo.description
-              ? response.productInfo.description
-              : ""
-            }</p>
+                                        <p class="product-dis">${
+                                          response.productInfo.description
+                                            ? response.productInfo.description
+                                            : ""
+                                        }</p>
                                     </div>
                                 </div>
                               <div class="product-code"> 
@@ -252,9 +256,9 @@ jQuery(document).ready(function ($) {
           buttonColor = "#D92D20";
 
           popupContent = `
-                    <div class="popup">
+                    <div class="popup popup.swipe-up">
                         <div class="popup-content">
-                            <div class="img-container" style="margin-top:-18%">
+                            <div class="img-container" style="margin-top:-23%">
                                 <img src="${veriscan_ajax_object.pluginUrl}assets/images/error.png" alt="Error" />
                             </div>
                             <div class="popup-header">
@@ -319,3 +323,5 @@ jQuery(document).ready(function ($) {
     }
   });
 });
+
+

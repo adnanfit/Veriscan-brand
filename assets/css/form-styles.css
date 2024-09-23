@@ -283,6 +283,7 @@ text-align: left;
         line-height: 8.36px;
         text-align: center;
         color: #475467;
+      
     }
 
     
@@ -385,7 +386,7 @@ text-align: left;
 
     .popup-header {
         text-align: center;
-        margin-top: -19%;
+        margin-top: -30%;
         margin-bottom: 28px !important;
     }
     .popup::before {
@@ -412,3 +413,4 @@ text-align: left;
 
 
 }
+
