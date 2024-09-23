@@ -141,7 +141,10 @@ jQuery(document).ready(function ($) {
           let productName = "";
 
           if (response?.productInfo?.coaLink) {
-            coaLink = `<a href="${response.productInfo.coaLink}" class="view-coa  " style="color: ${linkColor};">View COA →</a>`;
+            coaLink = `<a href="${response.productInfo.coaLink}" class="view-coa d-green" style="color: ${linkColor};">
+    View COA <img class="pad-img"  src="${veriscan_ajax_object.pluginUrl}assets/images/gIcon.svg" alt="Arrow" style="vertical-align: middle;" />
+</a>
+`;
           }
 
           if (response?.productInfo?.productName) {
@@ -152,7 +155,7 @@ jQuery(document).ready(function ($) {
           var dateFormat = formatISODateTime(validationTime);
           var displayCode = isFromUrl ? response.serialNumber : response.code;
           popupContent = `
-                    <div class="popup">
+                    <div class="popup popup.swipe-up">
                         <div class="popup-content">
                             <div class="img-container" style="margin-top:-22%">
                                 <img src="${
@@ -175,7 +178,10 @@ jQuery(document).ready(function ($) {
                                         }</p>
                                     </div>
                                 </div>
-                                <div class="product-code"> <span>Code:</span> <strong>${displayCode}</strong></div>
+                               <div class="product-code"> 
+  <span class="product-code-label">Code:  &nbsp;<span class="display-code">${displayCode}</span></span>
+</div>
+
                             </div>
                             <div class="COA-btn">
                                 ${coaLink}
@@ -192,7 +198,10 @@ jQuery(document).ready(function ($) {
           let productName = "";
 
           if (response?.productInfo?.coaLink) {
-            coaLink = `<a href="${response.productInfo.coaLink}" class="view-coa  " style="color: ${linkColor};">View COA →</a>`;
+            coaLink = `<a href="${response.productInfo.coaLink}" class="view-coa o-green" style="color: ${linkColor};">
+    View COA <img  class="pad-img" src="${veriscan_ajax_object.pluginUrl}assets/images/oIcon.svg" alt="Arrow" style="vertical-align: middle;" />
+</a>
+`;
           }
 
           if (response?.productInfo?.productName) {
@@ -214,6 +223,9 @@ jQuery(document).ready(function ($) {
                                 <h2> <strong>Code Already Scanned</strong></h2>
                                 <p class="header-p">Code was scanned ${timeDiffMessage} on</p>
                                 <p class="header-date"><strong>${dateFormat}</strong></p>
+
+
+                                
                             </div>
                             <div class="popup-body">
                                 <div class="product-info ${productInfoClass}">
@@ -227,7 +239,10 @@ jQuery(document).ready(function ($) {
                                         }</p>
                                     </div>
                                 </div>
-                                <div class="product-code">Code: <strong>${displayCode}</strong></div>
+                              <div class="product-code"> 
+  <span class="product-code-label">Code: <span class="display-code">${displayCode}</span></span>
+</div>
+
                             </div>
                             <div class="COA-btn">
                                 ${coaLink}
@@ -241,9 +256,9 @@ jQuery(document).ready(function ($) {
           buttonColor = "#D92D20";
 
           popupContent = `
-                    <div class="popup">
+                    <div class="popup popup.swipe-up">
                         <div class="popup-content">
-                            <div class="img-container" style="margin-top:-18%">
+                            <div class="img-container" style="margin-top:-23%">
                                 <img src="${veriscan_ajax_object.pluginUrl}assets/images/error.png" alt="Error" />
                             </div>
                             <div class="popup-header">
@@ -252,7 +267,11 @@ jQuery(document).ready(function ($) {
                             <div class="popup-error-body">
                                 <p>This product is not listed in our database. Please contact the vendor or check that the code below is correct.</p>
                             </div>
-                            <div class="error-code">Code: <strong>${codeId}</strong></div>
+                            <div class="error-code"> <span class="product-code-label">Code: <span class="display-code">${codeId}</span></span>  </div>
+                            
+
+
+
                             <button class="close-button" style="background-color: ${buttonColor};">Close</button>
                         </div>
                     </div>
@@ -304,3 +323,5 @@ jQuery(document).ready(function ($) {
     }
   });
 });
+
+
