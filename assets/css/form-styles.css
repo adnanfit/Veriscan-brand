@@ -416,3 +416,17 @@ text-align: left;
 
 
 
+@media (min-width: 600px) and (max-width: 1020px) {
+    /* Your CSS styles go here */
+    #veriscan-code {
+       
+    }
+    .input-with-button {
+        position: relative;
+        display: inline-block;
+        width: 130% !important;
+      
+    }
+}
+
+
