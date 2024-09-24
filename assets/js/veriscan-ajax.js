@@ -214,7 +214,7 @@ jQuery(document).ready(function ($) {
           popupContent = `
                     <div class="popup">
                         <div class="popup-content">
-                            <div class="img-container">
+                            <div class="img-container img-already ">
                                 <img src="${
                                   veriscan_ajax_object.pluginUrl
                                 }assets/images/warn.png" alt="Warning" />

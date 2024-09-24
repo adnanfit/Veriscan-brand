@@ -271,7 +271,7 @@ text-align: left;
     color: #fff;
     cursor: pointer;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 600px) {
     .form-container {
         width: 100%;
     }
@@ -382,7 +382,7 @@ text-align: left;
         border-radius: 0 !important;
     }
 }
-@media (max-width: 768px) {
+@media (max-width: 600px) {
 
     .popup-header {
         text-align: center;
@@ -413,4 +413,6 @@ text-align: left;
 
 
 }
+
+
 

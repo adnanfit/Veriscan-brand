@@ -147,7 +147,7 @@
     float: right;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .form-container {
         width: 100%;
     }
