@@ -1,7 +1,7 @@
 <?php
 /*
- * Plugin Name:       Veriscan Code Scan
- * Description:       Universal VeriScan: To implement the plugin, use this shortcode: [veriscan_code].
+ * Plugin Name:       Veriscan Scan Code by Brands
+ * Description:       Brand Specific VeriScan: To implement the plugin, use this shortcode: [veriscan_code].
  * Version:           1.3.5
  * Requires at least: 5.2
  * Requires PHP:      7.2
@@ -16,6 +16,11 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
+
+// Include other necessary files
+include_once plugin_dir_path(__FILE__) . 'includes/admin-settings.php';
+include_once plugin_dir_path(__FILE__) . 'includes/shortcode-handler.php';
+
 // Enqueue necessary scripts and styles
 function veriscan_enqueue_scripts() {
     wp_enqueue_style('veriscan-styles', plugin_dir_url(__FILE__) . 'assets/css/form-styles.css');
@@ -25,8 +30,8 @@ function veriscan_enqueue_scripts() {
     wp_localize_script('veriscan-ajax', 'veriscan_ajax_object', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'api_endpoint' => get_option('veriscan_api_endpoint'),
-        'pluginUrl' => plugin_dir_url(__FILE__)
-
+        'pluginUrl' => plugin_dir_url(__FILE__),
+        'brandId' => get_option('veriscan_brand_id')
     ));
 }
 add_action('wp_enqueue_scripts', 'veriscan_enqueue_scripts');
@@ -38,9 +43,6 @@ function veriscan_enqueue_admin_scripts() {
 }
 add_action('admin_enqueue_scripts', 'veriscan_enqueue_admin_scripts');
 
-// Include other necessary files
-include_once plugin_dir_path(__FILE__) . 'includes/admin-settings.php';
-include_once plugin_dir_path(__FILE__) . 'includes/shortcode-handler.php';
 
 
 // Register shortcode

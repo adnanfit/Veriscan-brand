@@ -1,5 +1,9 @@
 <?php
-// Create a menu page in WordPress dashboard for setting API endpoint and template selection
+// Prevent direct file access
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 function veriscan_create_admin_menu() {
     add_menu_page(
         'Veriscan Settings',
@@ -12,87 +16,182 @@ function veriscan_create_admin_menu() {
 }
 add_action('admin_menu', 'veriscan_create_admin_menu');
 
-// Admin page content with tabs for API endpoint and template selection
 function veriscan_settings_page() {
-    // Handle form submission for API endpoint
-    if (isset($_POST['veriscan_api_endpoint'])) {
-        update_option('veriscan_api_endpoint', sanitize_text_field($_POST['veriscan_api_endpoint']));
+    // Check user capabilities
+    if (!current_user_can('manage_options')) {
+        return;
     }
 
-    // Handle form submission for template selection
-    if (isset($_POST['veriscan_selected_template'])) {
-        update_option('veriscan_selected_template', sanitize_text_field($_POST['veriscan_selected_template']));
+    // Save settings if the form is submitted
+    if (isset($_POST['veriscan_save_settings'])) {
+        if (isset($_POST['veriscan_brand_id'])) {
+            update_option('veriscan_brand_id', sanitize_text_field($_POST['veriscan_brand_id']));
+        }
+        if (isset($_POST['veriscan_selected_template'])) {
+            update_option('veriscan_selected_template', sanitize_text_field($_POST['veriscan_selected_template']));
+        }
+        add_settings_error('veriscan_messages', 'veriscan_message', __('Settings Saved', 'veriscan'), 'updated');
     }
 
-    // Get current values
-    $veriscan_api_endpoint = get_option('veriscan_api_endpoint', '');
-    $selected_template = get_option('veriscan_selected_template', 'template-1');
+    // Get current settings
+    $veriscan_brand_id = get_option('veriscan_brand_id', '');
+    $veriscan_selected_template = get_option('veriscan_selected_template', 'template-1');
 
+    // Define available templates
+    $plugin_dir = plugin_dir_url(dirname(__FILE__));
+    $templates = [
+        'template-1' => [
+            'name' => 'Template 1',
+            'image' => $plugin_dir . 'assets/images/template-1.png',
+            'file' => plugin_dir_path(dirname(__FILE__)) . 'templates/template-1.php'
+        ],
+        'template-2' => [
+            'name' => 'Template 2',
+            'image' => $plugin_dir . 'assets/images/template-2.png',
+            'file' => plugin_dir_path(dirname(__FILE__)) . 'templates/template-2.php'
+        ],
+        'template-3' => [
+            'name' => 'Template 3',
+            'image' => $plugin_dir . 'assets/images/template-3.png',
+            'file' => plugin_dir_path(dirname(__FILE__)) . 'templates/template-3.php'
+        ],
+    ];
+
+    // Settings page HTML
     ?>
-<style>
-/* Ensure all cards have the same height */
-.card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-/* Style for the form-check */
-.form-check-input {
-    width: 20px;
-    height: 20px;
-}
-
-/* Center the radio buttons */
-.form-check {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.submit-btn {
-    margin-top: 50px;
-}
-</style>
 <div class="wrap">
-    <h1>Veriscan Settings</h1>
+    <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+    <?php settings_errors('veriscan_messages'); ?>
 
-    <!-- Bootstrap nav-tabs -->
-    <ul class="nav nav-tabs" id="veriscanTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="api-tab" data-toggle="tab" href="#api" role="tab" aria-controls="api"
-                aria-selected="true">API Endpoint</a>
-        </li>
-        <!-- <li class="nav-item">
-            <a class="nav-link" id="template-tab" data-toggle="tab" href="#template" role="tab" aria-controls="template"
-                aria-selected="false">Template Selection</a>
-        </li> -->
-    </ul>
+    <form method="post" action="">
+        <?php wp_nonce_field('veriscan_settings_action', 'veriscan_settings_nonce'); ?>
 
-    <!-- Tab panes -->
-    <div class="tab-content" id="veriscanTabContent">
-        <!-- API Endpoint Settings (Tab 1) -->
-        <div class="tab-pane fade show active" id="api" role="tabpanel" aria-labelledby="api-tab">
-            <form method="post" action="" class="mt-4 w-50 p-3">
-                <div class="form-group">
-                    <label for="veriscan_api_endpoint">API Endpoint URL</label>
-                    <input type="text" name="veriscan_api_endpoint" id="veriscan_api_endpoint" class="form-control"
-                        value="<?php echo esc_attr($veriscan_api_endpoint); ?>" />
-                </div>
-                <button type="submit" class="btn btn-primary">Save</button>
-            </form>
+        <h2 class="nav-tab-wrapper">
+            <a href="#brand-id" class="nav-tab nav-tab-active">Brand ID</a>
+            <a href="#template" class="nav-tab">Select Template</a>
+        </h2>
 
-            <!-- Code line bar for the veriscan_code shortcode -->
-            <div class="mt-4">
-                <label for="veriscan_code">Veriscan Code Shortcode</label>
-                <p>Use this shortcode to implement the code line bar:</p>
-                <p>If you're unsure how to implement it, you can watch the demo <a
-                        href="https://www.youtube.com/watch?v=iS1FFahiAbk" target="_blank">here</a>.</p>
-                <pre><code id="veriscan_code">[veriscan_code]</code></pre>
-            </div>
+        <div id="brand-id" class="tab-content">
+            <table class="form-table">
+                <tr valign="top">
+                    <th scope="row">Brand ID</th>
+                    <td>
+                        <input type="text" name="veriscan_brand_id" value="<?php echo esc_attr($veriscan_brand_id); ?>"
+                            class="regular-text">
+                        <p class="description">Enter your Veriscan Brand ID here.</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="template" class="tab-content" style="display:none;">
+            <table class="form-table">
+                <tr valign="top">
+                    <th scope="row">Select Template</th>
+                    <td>
+                        <div class="template-container">
+                            <?php foreach ($templates as $key => $template): ?>
+                            <div
+                                class="template-card <?php echo ($veriscan_selected_template === $key) ? 'selected' : ''; ?>">
+                                <label>
+                                    <input type="radio" name="veriscan_selected_template"
+                                        value="<?php echo esc_attr($key); ?>"
+                                        <?php checked($veriscan_selected_template, $key); ?>>
+                                    <img src="<?php echo esc_url($template['image']); ?>"
+                                        alt="<?php echo esc_attr($template['name']); ?>">
+                                    <p><?php echo esc_html($template['name']); ?></p>
+                                </label>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <?php submit_button('Save Settings', 'primary', 'veriscan_save_settings'); ?>
+    </form>
+
+    <div class="postbox">
+        <h3 class="hndle"><span>Shortcode Usage</span></h3>
+        <div class="inside">
+            <p>Use this shortcode to implement the Veriscan code form on your pages or posts:</p>
+            <code>[veriscan_code]</code>
         </div>
     </div>
 </div>
+
+<style>
+.template-container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+
+.template-card {
+    display: flex;
+    align-items: center;
+    width: 350px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.template-card:hover,
+.template-card.selected {
+    border-color: #007cba;
+    box-shadow: 0 0 5px rgba(0, 124, 186, 0.8);
+}
+
+.template-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.template-card input[type="radio"] {
+    display: none;
+}
+
+.tab-content {
+    margin-top: 20px;
+}
+</style>
+
+<script>
+jQuery(document).ready(function($) {
+    // Tab functionality
+    $('.nav-tab-wrapper a').on('click', function(e) {
+        e.preventDefault();
+        $('.nav-tab-wrapper a').removeClass('nav-tab-active');
+        $(this).addClass('nav-tab-active');
+        $('.tab-content').hide();
+        $($(this).attr('href')).show();
+    });
+
+    // Template selection
+    $('.template-card').on('click', function() {
+        $('.template-card').removeClass('selected');
+        $(this).addClass('selected');
+        $(this).find('input[type="radio"]').prop('checked', true);
+    });
+});
+</script>
 <?php
 }
+
+// Shortcode implementation
+function veriscan_code_shortcode() {
+    $selected_template = get_option('veriscan_selected_template', 'template-1');
+    $template_file = plugin_dir_path(dirname(__FILE__)) . 'templates/' . $selected_template . '.php';
+    
+    if (file_exists($template_file)) {
+        ob_start();
+        include $template_file;
+        return ob_get_clean();
+    } else {
+        return '<!-- Veriscan Error: Template file not found. -->';
+    }
+}
+add_shortcode('veriscan_code', 'veriscan_code_shortcode');

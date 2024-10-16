@@ -1,4 +1,5 @@
 jQuery(document).ready(function ($) {
+  const baseUrl = "https://vapeverification-api-dev.falconweb.app";
   //Get Params data
   function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -27,6 +28,17 @@ jQuery(document).ready(function ($) {
   if (codeIdParam) {
     isFromUrl = true;
     submitForm(codeIdParam);
+  }
+
+  //Get Brand ID
+  function checkBrandId() {
+    var brandIdFromAjax = veriscan_ajax_object.brandId;
+    var brandId = brandIdFromAjax || localStorage.getItem("veriscan_brand_id");
+
+    if (!brandId) {
+      alert("Brand ID not found.");
+    }
+    return brandId;
   }
 
   //Get Time difference with scaned time and current time
@@ -98,23 +110,28 @@ jQuery(document).ready(function ($) {
   });
 
   var prodImg = undefined;
-  function submitForm(codeId) {
+  function submitForm(codeId, brandId) {
     $("#veriscan-overlay").show();
     $("#veriscan-loader").show();
 
     var codeId = codeId;
-    var apiEndpoint = veriscan_ajax_object.api_endpoint;
-    var payload = { codeId: codeId };
+    var brandId = checkBrandId();
+    var apiEndpoint = `${baseUrl}/api/v1/codes/validate`;
+    var payload = {
+      codeId: codeId,
+      brandId: brandId,
+    };
 
     $.ajax({
       type: "POST",
       url: apiEndpoint,
       contentType: "application/json; charset=utf-8",
       data: JSON.stringify(payload),
-      success: function (response) {
+      complete: function (result) {
+        const response = result.responseJSON;
+
         $("#veriscan-loader").hide();
 
-        var baseUrl = new URL(apiEndpoint).origin;
         var popupContent = "";
         var linkColor, buttonColor;
         var productImg = "";
@@ -153,7 +170,7 @@ jQuery(document).ready(function ($) {
           var validationTime = response.validationTime;
           var timeDiffMessage = getTimeDifference(validationTime);
           var dateFormat = formatISODateTime(validationTime);
-          var displayCode = isFromUrl ? response.serialNumber : response.code;
+          var displayCode = response.serialNumber || response.code || codeId;
           popupContent = `
                     <div class="popup popup.swipe-up">
                         <div class="popup-content">
@@ -210,7 +227,7 @@ jQuery(document).ready(function ($) {
           var validationTime = response.validationTime;
           var timeDiffMessage = getTimeDifference(validationTime);
           var dateFormat = formatISODateTime(validationTime);
-          var displayCode = isFromUrl ? response.serialNumber : response.code;
+          var displayCode = response.serialNumber || response.code || codeId;
           popupContent = `
                     <div class="popup">
                         <div class="popup-content">
@@ -251,6 +268,34 @@ jQuery(document).ready(function ($) {
                         </div>
                     </div>
                 `;
+        } else if (
+          response.status === "formatError" ||
+          response.status === "notfound"
+        ) {
+          linkColor = "#D92D20";
+          buttonColor = "#D92D20";
+
+          // Display the response message instead of the default message
+          popupContent = `
+          <div class="popup popup.swipe-up">
+              <div class="popup-content">
+                  <div class="img-container" style="margin-top:-23%">
+                      <img src="${veriscan_ajax_object.pluginUrl}assets/images/error.png" alt="Error" />
+                  </div>
+                  <div class="popup-header">
+                      <h2> <strong>Error Detected</strong></h2>
+                  </div>
+                  <div class="popup-error-body">
+                      <p>${response.message} Please get the correct ID from the admin in order to make it work.</p>
+                      </p>
+                  </div>
+                  <div class="error-code"> 
+                      <span class="product-code-label">Code: <span class="display-code">${codeId}</span></span>
+                  </div>
+                  <button class="close-button" style="background-color: ${buttonColor};">Close</button>
+              </div>
+          </div>
+      `;
         } else {
           linkColor = "#D92D20";
           buttonColor = "#D92D20";
@@ -282,6 +327,9 @@ jQuery(document).ready(function ($) {
         $("#veriscan-popup").show();
         $("#veriscan-overlay").show();
       },
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log("some error", XMLHttpRequest, textStatus, errorThrown);
+      },
     });
   }
   $("#veriscan-code").on("input", function () {
@@ -300,7 +348,6 @@ jQuery(document).ready(function ($) {
   });
 
   $(document).on("click", "#prod-img", function () {
-    console.log("image clciked");
     openLightbox(prodImg);
   });
 
@@ -323,5 +370,3 @@ jQuery(document).ready(function ($) {
     }
   });
 });
-
-
