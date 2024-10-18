@@ -1,5 +1,5 @@
 jQuery(document).ready(function ($) {
-  const baseUrl = "https://vapeverification-api-dev.falconweb.app";
+  const baseUrl = "https://getveriscan.dev";
   //Get Params data
   function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -23,7 +23,7 @@ jQuery(document).ready(function ($) {
   }
 
   //Get Code ID
-  var codeIdParam = getParameterByName("codeId");
+  var codeIdParam = getParameterByName("h");
   var isFromUrl = false;
   if (codeIdParam) {
     isFromUrl = true;
@@ -129,7 +129,7 @@ jQuery(document).ready(function ($) {
       data: JSON.stringify(payload),
       complete: function (result) {
         const response = result.responseJSON;
-
+        console.log(response);
         $("#veriscan-loader").hide();
 
         var popupContent = "";
@@ -328,7 +328,7 @@ jQuery(document).ready(function ($) {
         $("#veriscan-overlay").show();
       },
       error: function (XMLHttpRequest, textStatus, errorThrown) {
-        console.log("some error", XMLHttpRequest, textStatus, errorThrown);
+        alert("API URL ISSUE", XMLHttpRequest, textStatus, errorThrown);
       },
     });
   }
@@ -336,7 +336,6 @@ jQuery(document).ready(function ($) {
     var value = $(this).val();
     if (value.length > 12) {
       $(this).val(value.substring(0, 12));
-      alert("Input cannot exceed 12 characters");
     }
   });
 
