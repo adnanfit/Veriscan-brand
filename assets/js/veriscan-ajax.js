@@ -327,9 +327,6 @@ jQuery(document).ready(function ($) {
         $("#veriscan-popup").show();
         $("#veriscan-overlay").show();
       },
-      error: function (XMLHttpRequest, textStatus, errorThrown) {
-        alert("API URL ISSUE", XMLHttpRequest, textStatus, errorThrown);
-      },
     });
   }
   $("#veriscan-code").on("input", function () {
