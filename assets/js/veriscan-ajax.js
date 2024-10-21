@@ -1,5 +1,4 @@
 jQuery(document).ready(function ($) {
-  // const baseUrl = "https://getveriscan.dev";
   const baseUrl = "https://vapeverification-api-dev.falconweb.app";
 
   // Get Params data
@@ -55,7 +54,6 @@ jQuery(document).ready(function ($) {
     );
     var diffMinutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
 
-    // Helper function to format time difference
     function formatTime(value, unit) {
       return `${value} ${unit}${value > 1 ? "s" : ""} ago`;
     }
@@ -126,21 +124,20 @@ jQuery(document).ready(function ($) {
       url: apiEndpoint,
       contentType: "application/json; charset=utf-8",
       data: JSON.stringify(payload),
-      success: function (response) {
+    }).then(
+      function (response) {
         $("#veriscan-loader").hide();
 
         var popupContent = "";
         var linkColor, buttonColor;
         var productImg = "";
 
-        // Image check from response
         if (response?.productInfo) {
           productImg = response.productInfo.productImg
             ? `${baseUrl}/${response.productInfo.productImg}`
             : "";
         }
 
-        // Image placement and if not then pass empty string
         prodImg = productImg;
         var productImgElement = productImg
           ? `<img id="prod-img" src="${productImg}" alt="Product Image" class="product-image">`
@@ -148,172 +145,187 @@ jQuery(document).ready(function ($) {
 
         var productInfoClass = productImg ? "" : "centered-product-info";
 
-        // Determine colors based on response status
-        if (response.status === "valid") {
-          linkColor = "#079455";
-          buttonColor = "#079455";
-          let coaLink = "";
-          let productName = "";
+        switch (response.status) {
+          case "valid":
+            linkColor = "#079455";
+            buttonColor = "#079455";
+            let coaLink = "";
+            let productName = "";
 
-          if (response?.productInfo?.coaLink) {
-            coaLink = `<a href="${response.productInfo.coaLink}" target="_blank" class="view-coa d-green" style="color: ${linkColor};">
-              View COA <img class="pad-img"  src="${veriscan_ajax_object.pluginUrl}assets/images/gIcon.svg" alt="Arrow" style="vertical-align: middle;" />
-            </a>`;
-          }
+            if (response?.productInfo?.coaLink) {
+              coaLink = `<a href="${response.productInfo.coaLink}" target="_blank" class="view-coa d-green" style="color: ${linkColor};">
+                View COA <img class="pad-img"  src="${veriscan_ajax_object.pluginUrl}assets/images/gIcon.svg" alt="Arrow" style="vertical-align: middle;" />
+              </a>`;
+            }
 
-          if (response?.productInfo?.productName) {
-            productName = `<h3 class="prod-title" style="text-transform: capitalize;">${response?.productInfo?.productName}</h3>`;
-          }
+            if (response?.productInfo?.productName) {
+              productName = `<h3 class="prod-title" style="text-transform: capitalize;">${response?.productInfo?.productName}</h3>`;
+            }
 
-          var validationTime = response.validationTime;
-          var timeDiffMessage = getTimeDifference(validationTime);
-          var dateFormat = formatISODateTime(validationTime);
-          var displayCode = response.serialNumber || response.code || codeId;
+            var validationTime = response.validationTime;
+            var timeDiffMessage = getTimeDifference(validationTime);
+            var dateFormat = formatISODateTime(validationTime);
+            var displayCode = response.serialNumber || response.code || codeId;
 
-          popupContent = `
-            <div class="popup popup.swipe-up">
-              <div class="popup-content">
-                <div class="img-container" style="margin-top:-22%">
-                  <img src="${
-                    veriscan_ajax_object.pluginUrl
-                  }assets/images/success.png" alt="Success" />
-                </div>
-                <div class="popup-header">
-                  <h2><strong>Product Valid</strong></h2>
-                  <p class="header-p">Scan Successful, the product is valid.</p>
-                </div>
-                <div class="popup-body">
-                  <div class="product-info ${productInfoClass}">
-                    ${productImgElement}
-                    <div class="product-details">
-                      ${productName}
-                      <p>${response.productInfo.description || ""}</p>
+            popupContent = `
+              <div class="popup popup.swipe-up">
+                <div class="popup-content">
+                  <div class="img-container" style="margin-top:-22%">
+                    <img src="${
+                      veriscan_ajax_object.pluginUrl
+                    }assets/images/success.png" alt="Success" />
+                  </div>
+                  <div class="popup-header">
+                    <h2><strong>Product Valid</strong></h2>
+                    <p class="header-p">Scan Successful, the product is valid.</p>
+                  </div>
+                  <div class="popup-body">
+                    <div class="product-info ${productInfoClass}">
+                      ${productImgElement}
+                      <div class="product-details">
+                        ${productName}
+                        <p>${response.productInfo.description || ""}</p>
+                      </div>
+                    </div>
+                    <div class="product-code"> 
+                      <span class="product-code-label">Code: &nbsp;<span class="display-code">${displayCode}</span></span>
                     </div>
                   </div>
-                  <div class="product-code"> 
-                    <span class="product-code-label">Code: &nbsp;<span class="display-code">${displayCode}</span></span>
+                  <div class="COA-btn">
+                    ${coaLink}
                   </div>
+                  <button class="close-button" style="background-color: ${buttonColor};">Close</button>
                 </div>
-                <div class="COA-btn">
-                  ${coaLink}
-                </div>
-                <button class="close-button" style="background-color: ${buttonColor};">Close</button>
               </div>
-            </div>
-          `;
-        } else if (response.status === "used") {
-          linkColor = "#FF8C39";
-          buttonColor = "#FF8C39";
-          let coaLink = "";
-          let productName = "";
+            `;
+            break;
 
-          if (response?.productInfo?.coaLink) {
-            coaLink = `<a href="${response.productInfo.coaLink}" class="view-coa o-green" target="_blank" style="color: ${linkColor};">
-              View COA <img class="pad-img" src="${veriscan_ajax_object.pluginUrl}assets/images/oIcon.svg" alt="Arrow" style="vertical-align: middle;" />
-            </a>`;
-          }
+          case "used":
+            linkColor = "#FF8C39";
+            buttonColor = "#FF8C39";
+            let usedCoaLink = "";
+            let usedProductName = "";
 
-          if (response?.productInfo?.productName) {
-            productName = `<h3 class="prod-title" style="text-transform: capitalize;">${response?.productInfo?.productName}</h3>`;
-          }
+            if (response?.productInfo?.coaLink) {
+              usedCoaLink = `<a href="${response.productInfo.coaLink}" class="view-coa o-green" target="_blank" style="color: ${linkColor};">
+                View COA <img class="pad-img" src="${veriscan_ajax_object.pluginUrl}assets/images/oIcon.svg" alt="Arrow" style="vertical-align: middle;" />
+              </a>`;
+            }
 
-          var validationTime = response.validationTime;
-          var timeDiffMessage = getTimeDifference(validationTime);
-          var dateFormat = formatISODateTime(validationTime);
-          var displayCode = response.serialNumber || response.code || codeId;
+            if (response?.productInfo?.productName) {
+              usedProductName = `<h3 class="prod-title" style="text-transform: capitalize;">${response?.productInfo?.productName}</h3>`;
+            }
 
-          popupContent = `
-            <div class="popup">
-              <div class="popup-content">
-                <div class="img-container img-already ">
-                  <img src="${
-                    veriscan_ajax_object.pluginUrl
-                  }assets/images/warn.png" alt="Warning" />
-                </div>
-                <div class="popup-header">
-                  <h2><strong>Code Already Scanned</strong></h2>
-                  <p class="header-p">Code was scanned ${timeDiffMessage} on</p>
-                  <p class="header-date"><strong>${dateFormat}</strong></p>
-                </div>
-                <div class="popup-body">
-                  <div class="product-info ${productInfoClass}">
-                    ${productImgElement}
-                    <div class="product-details">
-                      ${productName}
-                      <p class="product-dis">${
-                        response.productInfo.description || ""
-                      }</p>
+            var usedValidationTime = response.validationTime;
+            var usedTimeDiffMessage = getTimeDifference(usedValidationTime);
+            var usedDateFormat = formatISODateTime(usedValidationTime);
+            var usedDisplayCode =
+              response.serialNumber || response.code || codeId;
+
+            popupContent = `
+              <div class="popup">
+                <div class="popup-content">
+                  <div class="img-container img-already ">
+                    <img src="${
+                      veriscan_ajax_object.pluginUrl
+                    }assets/images/warn.png" alt="Warning" />
+                  </div>
+                  <div class="popup-header">
+                    <h2><strong>Code Already Scanned</strong></h2>
+                    <p class="header-p">Code was scanned ${usedTimeDiffMessage} on</p>
+                    <p class="header-date"><strong>${usedDateFormat}</strong></p>
+                  </div>
+                  <div class="popup-body">
+                    <div class="product-info ${productInfoClass}">
+                      ${productImgElement}
+                      <div class="product-details">
+                        ${usedProductName}
+                        <p class="product-dis">${
+                          response.productInfo.description || ""
+                        }</p>
+                      </div>
+                    </div>
+                    <div class="product-code"> 
+                      <span class="product-code-label">Code: <span class="display-code">${usedDisplayCode}</span></span>
                     </div>
                   </div>
-                  <div class="product-code"> 
-                    <span class="product-code-label">Code: <span class="display-code">${displayCode}</span></span>
+                  <div class="COA-btn">
+                    ${usedCoaLink}
                   </div>
+                  <button class="close-button" style="background-color: ${buttonColor};">Close</button>
                 </div>
-                <div class="COA-btn">
-                  ${coaLink}
-                </div>
-                <button class="close-button" style="background-color: ${buttonColor};">Close</button>
               </div>
-            </div>
-          `;
-        } else if (
-          response.status === "formatError" ||
-          response.status === "notfound"
-        ) {
-          linkColor = "#D92D20";
-          buttonColor = "#D92D20";
+            `;
+            break;
 
-          popupContent = `
-            <div class="popup popup.swipe-up">
-              <div class="popup-content">
-                <div class="img-container" style="margin-top:-23%">
-                  <img src="${veriscan_ajax_object.pluginUrl}assets/images/error.png" alt="Error" />
-                </div>
-                <div class="popup-header">
-                  <h2><strong>Error Detected</strong></h2>
-                </div>
-                <div class="popup-error-body">
-                  <p>${response.message} Please get the correct ID from the admin in order to make it work.</p>
-                </div>
-                <div class="error-code"> 
-                  <span class="product-code-label">Code: <span class="display-code">${codeId}</span></span>
-                </div>
-                <button class="close-button" style="background-color: ${buttonColor};">Close</button>
-              </div>
-            </div>
-          `;
-        } else if (response.status === "invalid") {
-          linkColor = "#D92D20";
-          buttonColor = "#D92D20";
+          case "formatError":
+          case "notfound":
+            linkColor = "#D92D20";
+            buttonColor = "#D92D20";
 
-          popupContent = `
-            <div class="popup popup.swipe-up">
-              <div class="popup-content">
-                <div class="img-container" style="margin-top:-23%">
-                  <img src="${veriscan_ajax_object.pluginUrl}assets/images/error.png" alt="Error" />
+            popupContent = `
+              <div class="popup popup.swipe-up">
+                <div class="popup-content">
+                  <div class="img-container" style="margin-top:-23%">
+                    <img src="${veriscan_ajax_object.pluginUrl}assets/images/error.png" alt="Error" />
+                  </div>
+                  <div class="popup-header">
+                    <h2><strong>Error Detected</strong></h2>
+                  </div>
+                  <div class="popup-error-body">
+                    <p>${response.message} Please get the correct ID from the admin in order to make it work.</p>
+                  </div>
+                  <div class="error-code"> 
+                    <span class="product-code-label">Code: <span class="display-code">${codeId}</span></span>
+                  </div>
+                  <button class="close-button" style="background-color: ${buttonColor};">Close</button>
                 </div>
-                <div class="popup-header">
-                  <h2><strong>Invalid Code Detected</strong></h2>
-                </div>
-                <div class="popup-error-body">
-                  <p>This product is not listed in our database. Please contact the vendor or check that the code below is correct.</p>
-                </div>
-                <div class="error-code">
-                  <span class="product-code-label">Code: <span class="display-code">${codeId}</span></span>
-                </div>
-                <button class="close-button" style="background-color: ${buttonColor};">Close</button>
               </div>
-            </div>
-          `;
+            `;
+            break;
+
+          case "invalid":
+          default:
+            linkColor = "#D92D20";
+            buttonColor = "#D92D20";
+
+            popupContent = `
+              <div class="popup popup.swipe-up">
+                <div class="popup-content">
+                  <div class="img-container" style="margin-top:-23%">
+                    <img src="${veriscan_ajax_object.pluginUrl}assets/images/error.png" alt="Error" />
+                  </div>
+                  <div class="popup-header">
+                    <h2><strong>Invalid Code Detected</strong></h2>
+                  </div>
+                  <div class="popup-error-body">
+                    <p>This product is not listed in our database. Please contact the vendor or check that the code below is correct.</p>
+                  </div>
+                  <div class="error-code">
+                    <span class="product-code-label">Code: <span class="display-code">${codeId}</span></span>
+                  </div>
+                  <button class="close-button" style="background-color: ${buttonColor};">Close</button>
+                </div>
+              </div>
+            `;
+            break;
         }
 
         $("#veriscan-popup-content").html(popupContent);
         $("#veriscan-popup").show();
         $("#veriscan-overlay").show();
       },
-      error: function (jqXHR, textStatus, errorThrown) {
+      function (jqXHR, textStatus, errorThrown) {
         $("#veriscan-loader").hide();
-        console.error("Ajax request failed:", textStatus, errorThrown);
+        console.error(
+          "Ajax request failed:",
+          textStatus,
+          errorThrown,
+          "json",
+          jqXHR.responseJSON,
+          "message",
+          jqXHR.responseJSON?.message
+        );
 
         var buttonColor = "#D92D20";
         var popupContent = `
@@ -339,8 +351,8 @@ jQuery(document).ready(function ($) {
         $("#veriscan-popup-content").html(popupContent);
         $("#veriscan-popup").show();
         $("#veriscan-overlay").show();
-      },
-    });
+      }
+    );
   }
 
   $("#veriscan-code").on("input", function () {
