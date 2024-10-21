@@ -282,7 +282,7 @@ jQuery(document).ready(function ($) {
               </div>
             </div>
           `;
-        } else {
+        } else if (response.status === "invalid") {
           linkColor = "#D92D20";
           buttonColor = "#D92D20";
 
