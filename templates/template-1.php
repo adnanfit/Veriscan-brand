@@ -144,6 +144,7 @@
     }
 
     #veriscan-code {
+        width: 77%;
         font-size: 16px;
     }
 }
@@ -165,15 +166,70 @@
     }
 
     #veriscan-code {
+        width: 100%;
         font-size: 14px;
-        padding: 12px 12px 12px 40px;
+        padding: 12px 12px 12px 40px !important;
     }
 
     .input-with-button svg {
         width: 20px;
         height: 20px;
         left: 10px;
+        margin-right: 10px;
     }
+}
+
+@media (max-width: 600px) {
+    .form-container {
+        width: 100%;
+    }
+
+    #veriscan-popup {
+        top: auto;
+        left: 0;
+        bottom: 0;
+        transform: none;
+        margin: 0;
+        width: 100%;
+        max-width: none;
+        border-radius: 15px;
+
+    }
+
+    #veriscan-loader {
+        width: 80%;
+        max-width: 300px;
+    }
+
+    .input-with-button input {
+        padding: 10px 50px 10px 15px;
+    }
+
+    .input-with-button button {
+        right: 15px;
+        width: 12%;
+    }
+
+    #veriscan-popup .close-btn {
+        font-size: 20px;
+    }
+
+    #lightbox {
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    #lightbox img {
+        max-width: 100%;
+        max-height: 80%;
+    }
+
+    #lightbox .close {
+        font-size: 30px;
+    }
+
 }
 </style>
 <div id="veriscan-overlay"></div>

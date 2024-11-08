@@ -163,19 +163,69 @@ body {
     filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.15));
 }
 
-/* Existing styles for overlay, popup, and loader */
-#veriscan-overlay,
-#veriscan-popup,
-#veriscan-loader {
-    /* Keep existing styles */
+@media (max-width: 600px) {
+    .form-container {
+        width: 100%;
+    }
+
+    #veriscan-popup {
+        top: auto;
+        left: 0;
+        bottom: 0;
+        transform: none;
+        margin: 0;
+        width: 100%;
+        max-width: none;
+        border-radius: 15px;
+
+    }
+
+    #veriscan-code {
+        padding: 10px 10px 10px 50px !important;
+        font-size: 14px !important;
+
+    }
+
+    #veriscan-loader {
+        width: 80%;
+        max-width: 300px;
+    }
+
+    .input-with-button input {
+        padding: 10px 50px 10px 15px;
+    }
+
+    .input-with-button button {
+        right: 15px;
+        width: 12%;
+    }
+
+    #veriscan-popup .close-btn {
+        font-size: 20px;
+    }
+
+    #lightbox {
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    #lightbox img {
+        max-width: 100%;
+        max-height: 80%;
+    }
+
+    #lightbox .close {
+        font-size: 30px;
+    }
+
 }
 
 @media (max-width: 768px) {
     #veriscan-form-container {
         padding: 15px;
     }
-
-
 
     #veriscan-code {
         font-size: 16px;

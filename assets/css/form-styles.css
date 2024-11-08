@@ -1,240 +1,230 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @font-face {
-    font-family: 'SF Pro Display';
-    src: url('../fonts/SFPRODISPLAYREGULAR.OTF') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-  }
-  .pad-img{
+  font-family: "SF Pro Display";
+  src: url("../fonts/SFPRODISPLAYREGULAR.OTF") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+.pad-img {
+  padding-left: 9px;
+}
+.product-code-label {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.36px; /* Alternatively, use line-height: 1.21; */
+  text-align: left;
+  color: rgba(71, 84, 103, 0.56);
+}
+.display-code {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.36px; /* Alternatively, you can use line-height: 1.21; */
+  text-align: left;
+  color: rgba(34, 34, 34, 1);
+}
 
-    padding-left: 9px;
-  }
-  .product-code-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 19.36px; /* Alternatively, use line-height: 1.21; */
-    text-align: left;
-    color:  rgba(71, 84, 103, 0.56);
-
-  }
-  .display-code {
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 19.36px; /* Alternatively, you can use line-height: 1.21; */
-    text-align: left;
-    color: rgba(34, 34, 34, 1);
-  }
-  
-  
 #veriscan-popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: transparent;
-    padding: 0;
-    border-radius:30px;
-    margin: 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 999;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  padding: 0;
+  border-radius: 30px;
+  margin: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 999;
 }
 .popup {
-    background-color: white;
-    border-radius: 30px;
-    width: 500px;
-   
-    overflow: hidden;
+  background-color: white;
+  border-radius: 30px;
+  width: 500px;
+
+  overflow: hidden;
 }
 .popup-content {
-    background: transparent;
-    border-radius:30px;
-    padding: 0; 
+  background: transparent;
+  border-radius: 30px;
+  padding: 0;
 }
 .popup-header {
-    text-align: center;
-    margin-top: -19%;
-    margin-bottom: 25px;
+  text-align: center;
+  margin-top: -19%;
+  margin-bottom: 25px;
 }
 .popup-header h2 {
-    font-family: 'SF Pro', sans-serif;
-    font-size: 28px;
-    font-weight: 400;
-    line-height: 1.19; /* 33.41px / 28px = 1.19 */
-   
-    text-align: center;
-    color: #222222;
-    
+  font-family: "SF Pro", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.19; /* 33.41px / 28px = 1.19 */
+
+  text-align: center;
+  color: #222222;
 }
 .header-p {
-    margin: 10px 0 20px;
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19.36px;
-    text-align: center;
-    color: #475467;
-    
+  margin: 10px 0 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  text-align: center;
+  color: #475467;
 }
-.header-date{
-    margin: 5px 0 0;
-   
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 19.36px; /* Alternatively, you can use line-height: 1.21; */
-    text-align: center;
-    color: #FF8C39;
+.header-date {
+  margin: 5px 0 0;
+
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.36px; /* Alternatively, you can use line-height: 1.21; */
+  text-align: center;
+  color: #ff8c39;
 }
 .popup-body {
-    width: 90%;
-    margin: auto;
-    padding: 10px 0px 0 0px;
-    background-color: #f8f9fa;
-    border-radius: 8px ;
-     border: 1.5px solid rgba(0, 0, 0, 0.08); /* Top, right, and left border */  
- 
+  width: 90%;
+  margin: auto;
+  padding: 10px 0px 0 0px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1.5px solid rgba(0, 0, 0, 0.08); /* Top, right, and left border */
 }
 .product-info {
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
 }
 .product-image {
-    width: 95px !important;
-    height: 75px !important;
-    border-radius: 6px !important;
-    margin-right: 15px;
+  width: 95px !important;
+  height: 75px !important;
+  border-radius: 6px !important;
+  margin-right: 15px;
 }
 .product-details h3 {
-    font-family: 'SF Pro Display', sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 23.87px;
-  
-    text-align: left;
-    color: rgba(34, 34, 34, 1);
-    ;
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 23.87px;
+
+  text-align: left;
+  color: rgba(34, 34, 34, 1);
 }
 .product-details p {
-    margin: 5px 0 0;
-    font-size: 12px;
-    color: rgba(71, 84, 103, 1);
-    font-family: Inter;
-font-size: 16px;
-font-weight: 500;
-line-height: 19.36px;
-text-align: left;
-
-
+  margin: 5px 0 0;
+  font-size: 12px;
+  color: rgba(71, 84, 103, 1);
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.36px;
+  text-align: left;
 }
 .product-code {
-    font-size: 14px;
-    color: #666;
-    margin-top: 10px;
-    background-color: #EAECF0;
-    text-align: center;
-    border-radius: 0px 0px 10px 10px;
-    border-top: 1.2px solid #00000014;
-    padding: 3px;
-    height: 42px;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
+  font-size: 14px;
+  color: #666;
+  margin-top: 10px;
+  background-color: #eaecf0;
+  text-align: center;
+  border-radius: 0px 0px 10px 10px;
+  border-top: 1.2px solid #00000014;
+  padding: 3px;
+  height: 42px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
-.product-code{
-    color: #000;
+.product-code {
+  color: #000;
 }
 .close-button {
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    font-size: 24px !important;
-    letter-spacing: 0.02em;
-    background-color: #FF8C39;
-    color: white;
-    border: none;
-    padding: 24px 10px;
-    width: 100%;
-    font-size: 16px;
-    cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 24px !important;
+  letter-spacing: 0.02em;
+  background-color: #ff8c39;
+  color: white;
+  border: none;
+  padding: 24px 10px;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
 }
-.close-button-success{
-    background-color: #079455;
-    color: white;
-    border: none;
-    padding: 24px 10px;
-    width: 100%;
-    font-size: 16px;
-    cursor: pointer;
+.close-button-success {
+  background-color: #079455;
+  color: white;
+  border: none;
+  padding: 24px 10px;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
 }
 .close-button-success:hover {
-    background-color: #079469;
+  background-color: #079469;
 }
 .close-button:hover {
-    background-color: #f5642f;
+  background-color: #f5642f;
 }
 
-.img-container{
-    display: flex;
-    justify-content: center;
+.img-container {
+  display: flex;
+  justify-content: center;
 }
-.COA-btn{
-    padding: 20px 0;
-    display: flex;
-    justify-content: center;
+.COA-btn {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
 }
-.COA-btn a{
-    font-family: 'Inter', sans-serif;  /* Ensure 'Inter' is loaded or use a fallback */
-    font-size: 16px;
-    font-weight: 600;  /* Semi-bold */
-    line-height: 19.36px;
-    text-align: left;
-    text-underline-offset: 3px;
-
+.COA-btn a {
+  font-family: "Inter", sans-serif; /* Ensure 'Inter' is loaded or use a fallback */
+  font-size: 16px;
+  font-weight: 600; /* Semi-bold */
+  line-height: 19.36px;
+  text-align: left;
+  text-underline-offset: 3px;
 }
-.view-coa-success a{
-    font-size: 16px;
-    font-weight: 600;
-    text-decoration: underline !important;
-    color: #079455;
+.view-coa-success a {
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: underline !important;
+  color: #079455;
 }
-.product-dis{
-    font-size: 16px;
+.product-dis {
+  font-size: 16px;
 }
-.close-btn-error{
-   background-color: #D92D20;
+.close-btn-error {
+  background-color: #d92d20;
 }
-.popup-error-body{
-    display: flex;
-    text-align: center;
-    width: 70%;
-    margin: auto;   font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    text-align: center;
-    color: rgba(71, 84, 103, 1);
-    margin-bottom: 13px;
- 
+.popup-error-body {
+  display: flex;
+  text-align: center;
+  width: 70%;
+  margin: auto;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  color: rgba(71, 84, 103, 1);
+  margin-bottom: 13px;
 }
-.error-code{
-    width: 90%;
-    margin: auto;
-    background-color: #EAECF0;
-    border-radius: 10px;
-    border: 1.2px solid #00000014;
-    padding: 10px;
-    text-align: center;
-    overflow: hidden;
-    white-space: wrap;
-    margin-bottom: 28px;
+.error-code {
+  width: 90%;
+  margin: auto;
+  background-color: #eaecf0;
+  border-radius: 10px;
+  border: 1.2px solid #00000014;
+  padding: 10px;
+  text-align: center;
+  overflow: hidden;
+  white-space: wrap;
+  margin-bottom: 28px;
 }
 .centered-product-info {
-    display: flex;
-    justify-content: center;  
+  display: flex;
+  justify-content: center;
 }
 
 /*-------------------------------*/
@@ -243,190 +233,160 @@ text-align: left;
 
 /* Lightbox overlay */
 .lightbox {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1000; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
-    justify-content: center; /* Center align horizontally */
-    align-items: center; /* Center align vertically */
-  }
-  
-  /* Lightbox image */
-  .lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    border: 2px solid #fff;
-  }
-  
-  /* Close button */
-  .lightbox .close {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    font-size: 40px;
-    color: #fff;
-    cursor: pointer;
-  }
-  @media (max-width: 600px) {
-    .form-container {
-        width: 100%;
-    }
-    .header-p {
-        /* margin: 10px 0 20px; */
-        font-family: 'Inter', sans-serif;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 8.36px;
-        text-align: center;
-        color: #475467;
-      
-    }
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+  justify-content: center; /* Center align horizontally */
+  align-items: center; /* Center align vertically */
+}
 
-    
-    #veriscan-popup {
-        top: auto;
-        bottom: 0;
-        transform: none;
-        margin: 0;
-        padding: 0;
-        border-top-left-radius: 30px !important;
-        border-top-right-radius: 30px !important;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-    }
+/* Lightbox image */
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 2px solid #fff;
+}
 
-    .popup {
-        width: 100%;
-        border-top-left-radius: 30px !important;
-        border-top-right-radius: 30px !important;
-        border-bottom-left-radius: 0 !important;
-        border-bottom-right-radius: 0 !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-    }
-  
-        .target-class::before {
-            content: '';
-            width: 48px;
-            height: 5px;
-            top: 8px;
-            left: 171px;
-            gap: 0px;
-            border-radius: 10px 0px 0px 0px;
-            opacity: 0;
-            position: absolute; /* Ensure the position is set to apply top/left */
-        }
-  
-    
-    .popup-content{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-    }
-
-    .popup-header h2 {
-        font-size: 28px; 
-        font-weight: 400;
-        color: #222222;
-    }
-    .popup-error-body{
-        width: 75%;
-        margin-bottom: 15px;
-        margin-top: -30px;
-
-    }
-    .error-code{
-    font-family: "Inter";
-    font-size: 16px;
-    }
-    .error-code span{
-    font-family: "Inter";
-    font-weight: 500;
-  
-    text-align: left;
-  
-    } 
-    .product-details h3 {
-        font-size: 18px; 
-    }
-
-    .product-details p {
-        font-size: 11px; 
-    }
-
-    .popup-body {
-        padding: 10px 0 0 0;
-    }
-
-    .product-image {
-        width: 80px; 
-        height: 60px; 
-    }
-
-    .product-code {
-        font-size: 12px; 
-        padding: 5px; 
-    }
-
-    .close-button, .close-button-success {
-        padding: 20px 10px;
-        font-size: 18px !important;
-        border-radius: 0 !important;
-    }
+/* Close button */
+.lightbox .close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
 }
 @media (max-width: 600px) {
+  .form-container {
+    width: 100%;
+  }
+  .header-p {
+    /* margin: 10px 0 20px; */
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 8.36px;
+    text-align: center;
+    color: #475467;
+  }
 
-    .popup-header {
-        text-align: center;
-        margin-top: -30%;
-        margin-bottom: 28px !important;
-    }
-    .popup::before {
-        content: '';
-        width: 48px;
-        height: 5px;
-        border-radius: 10px;
+  #veriscan-popup {
+    top: auto;
+    bottom: 0;
+    transform: none;
+    margin: 0;
+    padding: 0;
+    border-top-left-radius: 30px !important;
+    border-top-right-radius: 30px !important;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 
-        top: 8px;
-      
- 
-        border-radius: 10px ;
-        opacity: 1; /* Ensure opacity is set to visible */
-        position: absolute;
-        background-color: rgba(71, 84, 103, 0.24);
-        z-index: 9999; /* Ensure this value is high enough to be on top */
-    }
+  .popup {
+    width: 100%;
+    border-top-left-radius: 30px !important;
+    border-top-right-radius: 30px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .target-class::before {
+    content: "";
+    width: 48px;
+    height: 5px;
+    top: 8px;
+    left: 171px;
+    gap: 0px;
+    border-radius: 10px 0px 0px 0px;
+    opacity: 0;
+    position: absolute; /* Ensure the position is set to apply top/left */
+  }
+
+  .popup-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .popup-header h2 {
+    font-size: 28px;
+    font-weight: 400;
+    color: #222222;
+  }
+  .popup-error-body {
+    width: 75%;
+    margin-bottom: 15px;
+    margin-top: -30px;
+  }
+  .error-code {
+    font-family: "Inter";
+    font-size: 16px;
+  }
+  .error-code span {
+    font-family: "Inter";
+    font-weight: 500;
+
+    text-align: left;
+  }
+  .product-details h3 {
+    font-size: 18px;
+  }
+
+  .product-details p {
+    font-size: 11px;
+  }
+
+  .popup-body {
+    padding: 10px 0 0 0;
+  }
+
+  .product-image {
+    width: 80px;
+    height: 60px;
+  }
+
+  .product-code {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .close-button,
+  .close-button-success {
+    padding: 20px 10px;
+    font-size: 18px !important;
+    border-radius: 0 !important;
+  }
+}
+@media (max-width: 600px) {
+  .popup-header {
+    text-align: center;
+    margin-top: -30%;
+    margin-bottom: 28px !important;
+  }
 }
 @media (min-width: 300px) and (max-width: 380px) {
-
-    #veriscan-code {
-        padding: 15px 14px !important;
-    }
-
-
+  #veriscan-code {
+    padding: 15px 14px !important;
+  }
 }
-
-
 
 @media (min-width: 600px) and (max-width: 1020px) {
-    /* Your CSS styles go here */
-    #veriscan-code {
-       
-    }
-    .input-with-button {
-        position: relative;
-        display: inline-block;
-        width: 130% !important;
-      
-    }
+  /* Your CSS styles go here */
+  #veriscan-code {
+  }
+  .input-with-button {
+    position: relative;
+    display: inline-block;
+    width: 130% !important;
+  }
 }
-
-
