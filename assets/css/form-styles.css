@@ -387,6 +387,6 @@
   .input-with-button {
     position: relative;
     display: inline-block;
-    width: 130% !important;
+    width: 100%;
   }
 }
